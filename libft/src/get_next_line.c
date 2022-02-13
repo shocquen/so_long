@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 12:18:48 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/08 17:32:43 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/13 23:14:52 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static char	*ft_next_line(char *str)
 		free(str);
 		return (NULL);
 	}
-	ret = (char *)malloc(sizeof(char) * (ft_gnl_strlen(str) - i));
+	ret = (char *)malloc(sizeof(char) * (ft_strlen(str) - i));
 	if (!ret)
 		return (NULL);
 	j = i + 1;

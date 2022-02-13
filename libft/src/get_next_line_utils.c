@@ -6,21 +6,11 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 13:09:59 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/08 17:29:57 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/13 23:13:46 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-int	ft_gnl_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
 
 int	ft_gnl_strchr(const char *str, char c)
 {
@@ -52,8 +42,7 @@ char	*ft_gnl_strjoin(char *s1, char const *s2)
 	}
 	if (!s1 || !s2)
 		return (NULL);
-	ret = (char *)malloc(sizeof(*ret)
-			* (ft_gnl_strlen(s1) + ft_gnl_strlen(s2)) + 1);
+	ret = (char *)malloc(sizeof(*ret) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (!ret)
 		return (NULL);
 	i = -1;
