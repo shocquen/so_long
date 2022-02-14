@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/13 23:06:40 by shocquen          #+#    #+#             */
+/*   Updated: 2022/02/14 01:04:09 by shocquen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static void	*ft_load_img(void **mlx, char *filename)
@@ -10,7 +22,8 @@ static void	*ft_load_img(void **mlx, char *filename)
 
 t_assets	*init_assets(void **mlx)
 {
-	t_assets *assets;
+	t_assets	*assets;
+
 	assets = (t_assets *)malloc(sizeof(*assets) * 5);
 	if (!assets)
 		return (ft_error(CRED"Error: init_assets()\n"CNO));
@@ -27,7 +40,7 @@ t_assets	*init_assets(void **mlx)
 	return (assets);
 }
 
-t_player	*init_player()
+t_player	*init_player(void)
 {
 	t_player	*player;
 
@@ -42,10 +55,10 @@ t_player	*init_player()
 	return (player);
 }
 
-t_map			*init_map(char *path)
+t_map	*init_map(char *path)
 {
 	t_map	*map;
-	char	*ret;
+	int		fd;
 
 	if (!check_map_name(path))
 		return (ft_error("Error: map path\n"));
@@ -54,27 +67,18 @@ t_map			*init_map(char *path)
 		return (ft_error("Error: malloc map\n"));
 	map->collects_count = 0;
 	map->map = NULL;
-	int	fd;
 	fd = open(path, O_RDONLY);
 	if (!fd)
 		return (ft_error("Error: map ain't open\n"));
-	ret = get_next_line(fd);
-	while (ret)
-	{
-		if (ret[(int)ft_strlen(ret) - 1] == '\n')
-			ret[(int)ft_strlen(ret) - 1] = 0;
-		ft_lstadd_back(&map->map, ft_lstnew(ret));
-		ret = get_next_line(fd);
-	}
-	free(ret);
+	read_map(&map->map, fd);
 	if (!check_map_size(map->map))
-		return(ft_error(CRED"Error: map's rows isn't the same size\n"CNO));
+		return (ft_error(CRED"Error: map's rows isn't the same size\n"CNO));
 	map->height = ft_lstsize(map->map);
 	map->width = ft_strlen(map->map->content);
 	return (map);
 }
 
-void			init_window(t_game **game)
+void	init_window(t_game **game)
 {
 	(*game)->window = mlx_new_window((*game)->mlx,
 			(*game)->map->width * 64,

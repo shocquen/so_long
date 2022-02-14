@@ -6,7 +6,7 @@
 #    By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 09:28:22 by shocquen          #+#    #+#              #
-#    Updated: 2022/02/13 22:32:34 by shocquen         ###   ########.fr        #
+#    Updated: 2022/02/14 01:14:16 by shocquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,8 @@ SRCS		= main.c \
 	moves.c \
 	hooks.c \
 	apply_map.c \
-	init.c
+	init.c \
+	utils.c
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -103,7 +104,7 @@ NAME		= so_long
 RM			= rm -rf
 CC			= gcc
 AR			= ar -rcs
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -g
 MLXFLAGS	= -Ilibmlx -Llibmlx -llibmlx -framework OpenGL -framework AppKit
 
 ifeq ($(shell uname),Linux)

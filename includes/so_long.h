@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:44:31 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/11 18:14:29 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/14 01:21:50 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_map
 typedef struct s_assets
 {
 	void	*img;
-	char		key;
+	char	key;
 }	t_assets;
 
 /* The game */
@@ -89,29 +89,33 @@ typedef struct s_game
 	t_map			*map;
 }	t_game;
 
-int			end_game(t_game **game);
-
-/* map_checks */
-int		check_map_size(t_list *lst);
-int		check_map_name(char	*name);
-
-/* Print */
-void	*ft_error(const char *msg);
-
-/* Moves */
-char	get_char(t_game *game, int x, int y);
-
-/* Hooks */
-int	key_hook(int keycode, t_game **game);
-
-/* Apply map */
-void	ft_put_img(t_game *game, int x, int y, int asset);
-void	*apply_map(t_game *game, t_player **player);
+int				end_game(t_game **game);
 
 /* Init */
 void			init_window(t_game **game);
 t_map			*init_map(char *path);
-t_player	*init_player();
-t_assets	*init_assets(void **mlx);
+t_player		*init_player(void);
+t_assets		*init_assets(void **mlx);
+
+/* map_checks */
+int				check_map_size(t_list *lst);
+int				check_map_name(char	*name);
+
+/* Print */
+void			*ft_error(const char *msg);
+
+/* Moves */
+char			get_char(t_game *game, int x, int y);
+
+/* Hooks */
+int				key_hook(int keycode, t_game **game);
+
+/* Apply map */
+void			ft_put_img(t_game *game, int x, int y, int asset);
+void			*apply_map(t_game *game);
+void			*translate_map(t_game **game, char *line, int i, int j);
+
+/* Utils */
+void			read_map(t_list **map, int fd);
 
 #endif
