@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 00:58:08 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/14 01:37:39 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:07:43 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	*translate_map(t_game **game, char *line, int i, int j)
 		if (line[j] == 'P' && !k)
 			if (!apply_player(&((*game)->player), j, i))
 				return (ft_error(CRED"Error: more than one player\n"CNO));
-		if (line[j] == 'P' && !k)
+		if (line[j] == 'C' && !k)
 			(*game)->map->collects_count++;
 		if ((*game)->assets[k].key == line[j])
 			ft_put_img((*game), j, i, k);

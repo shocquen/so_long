@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:44:31 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/14 01:21:50 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:05:26 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_player
 {
 	int				state;
 	int				mouves;
-	int				objects_count;
+	int				collects_count;
 	t_pos			pos;
 }	t_player;
 

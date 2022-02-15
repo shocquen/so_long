@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 01:49:52 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/14 01:50:26 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:09:52 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	move_player(t_game **game, int x, int y)
 	char	c;
 
 	c = get_char(*game, x, y);
-	if (c == 'E' && (*game)->map->collects_count)
+	if (c == 'E' && (*game)->map->collects_count > 0)
 		return ;
 	ft_put_img(*game, (*game)->player->pos.x, (*game)->player->pos.y, EMPTY);
 	(*game)->player->pos.x = x;
@@ -26,10 +26,10 @@ void	move_player(t_game **game, int x, int y)
 	ft_put_img(*game, (*game)->player->pos.x, (*game)->player->pos.y, PLAYER);
 	if (c == 'C')
 	{
-		(*game)->player->objects_count++;
+		(*game)->player->collects_count++;
 		(*game)->map->collects_count--;
 	}
-	if (c == 'E' && !(*game)->map->collects_count)
+	if (c == 'E' && (*game)->map->collects_count <= 0)
 		end_game(game);
 }
 

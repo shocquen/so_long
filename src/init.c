@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 23:06:40 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/14 01:04:09 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:05:26 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_player	*init_player(void)
 		return (NULL);
 	player->state = 0;
 	player->mouves = 0;
-	player->objects_count = 0;
+	player->collects_count = 0;
 	player->pos.x = 0;
 	player->pos.y = 0;
 	return (player);
