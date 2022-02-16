@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:44:25 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/14 01:48:51 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/16 19:53:01 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ int	main(int argc, char **argv)
 	game = init_game(argv[1]);
 	if (!game)
 		exit (1);
-	ft_printf("player: \n\tstate: %d\n\tpos: {x: %d, y: %d}\n",
-		game->player->state, game->player->pos.x, game->player->pos.y);
 	mlx_key_hook(game->window, key_hook, &game);
 	mlx_hook(game->window, 17, 1, &end_game, &game);
 	mlx_loop(game->mlx);
