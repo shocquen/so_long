@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 23:06:40 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/16 20:04:38 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/17 14:50:32 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,7 @@ t_player	*init_player(void)
 	player = (t_player *)malloc(sizeof(*player));
 	if (!player)
 		return (NULL);
-	player->state = 0;
-	player->mouves = 0;
-	player->collects_count = 0;
-	player->pos.x = 0;
-	player->pos.y = 0;
+	ft_memset(player, 0, sizeof(*player));
 	return (player);
 }
 
@@ -65,7 +61,8 @@ t_map	*init_map(char *path)
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		return (ft_error("Error: malloc map\n"));
-	map->collects_count = 0;
+	map->collects = NULL;
+	map->collect_count = 0;
 	map->map = NULL;
 	fd = open(path, O_RDONLY);
 	if (!fd)

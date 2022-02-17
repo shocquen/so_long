@@ -6,7 +6,7 @@
 #    By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 09:28:22 by shocquen          #+#    #+#              #
-#    Updated: 2022/02/15 18:11:46 by shocquen         ###   ########.fr        #
+#    Updated: 2022/02/17 15:31:16 by shocquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,9 @@ SRCS		= main.c \
 	hooks.c \
 	apply_map.c \
 	init.c \
-	utils.c
+	map_utils.c \
+	end_game.c \
+	collects_manager.c
 
 OBJS		= $(SRCS:.c=.o)
 

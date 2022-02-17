@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:44:31 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/15 16:05:26 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/17 15:29:35 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,17 @@
 # define KEY_D 100
 # define KEY_ESC 65307
 
+/* Assets of the game*/
+# define PLAYER 0
+# define WALL 1
+# define EMPTY 2
+# define EXIT 3
+# define COLLECT 4
+
+/* map_check */
+# define EXTENSION ".ber"
+
+// * Structs
 /* Postition of an entity */
 typedef struct s_pos
 {
@@ -40,38 +51,27 @@ typedef struct s_pos
 	int	y;
 }	t_pos;
 
-/* The player */
 typedef struct s_player
 {
 	int				state;
 	int				mouves;
-	int				collects_count;
 	t_pos			pos;
 }	t_player;
 
-/* Collectible */
 typedef struct s_collect
 {
 	t_pos			pos;
 	int				state;
 }	t_collect;
 
-/* The map */
 typedef struct s_map
 {
 	int				width;
 	int				height;
-	int				collects_count;
+	int				collect_count;
+	t_list			*collects;
 	t_list			*map;
-	t_collect		*collects;
 }	t_map;
-
-/* Assets of the game*/
-# define PLAYER 0
-# define WALL 1
-# define EMPTY 2
-# define EXIT 3
-# define COLLECT 4
 
 typedef struct s_assets
 {
@@ -89,7 +89,9 @@ typedef struct s_game
 	t_map			*map;
 }	t_game;
 
+/* end_game */
 int				end_game(t_game **game);
+int				free_game(t_game **game);
 
 /* Init */
 void			init_window(t_game **game);
@@ -115,7 +117,11 @@ void			ft_put_img(t_game *game, int x, int y, int asset);
 void			*apply_map(t_game *game);
 void			*translate_map(t_game **game, char *line, int i, int j);
 
-/* Utils */
+/* map_util */
 void			read_map(t_list **map, int fd);
+
+/* collect_manager */
+int				count_col(t_list *lst);
+t_list			*col_map(t_list *lst, void (*del)(void *), int x, int y);
 
 #endif

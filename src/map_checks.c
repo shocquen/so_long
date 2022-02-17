@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 23:10:06 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/16 20:22:11 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/17 11:30:09 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	check_map_size(t_list *lst)
 }
 
 /* Check if the extension of the map is .ber */
-#define EXTENSION ".ber"
 
 int	check_map_name(char *name)
 {

@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 01:49:52 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/15 16:09:52 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/17 16:05:50 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	move_player(t_game **game, int x, int y)
 	char	c;
 
 	c = get_char(*game, x, y);
-	if (c == 'E' && (*game)->map->collects_count > 0)
+	if (c == 'E' && count_col((*game)->map->collects) >= 0)
 		return ;
 	ft_put_img(*game, (*game)->player->pos.x, (*game)->player->pos.y, EMPTY);
 	(*game)->player->pos.x = x;
@@ -25,11 +25,8 @@ void	move_player(t_game **game, int x, int y)
 	ft_printf("mouves: "CYLW"%d\n"CNO, ++(*game)->player->mouves);
 	ft_put_img(*game, (*game)->player->pos.x, (*game)->player->pos.y, PLAYER);
 	if (c == 'C')
-	{
-		(*game)->player->collects_count++;
-		(*game)->map->collects_count--;
-	}
-	if (c == 'E' && (*game)->map->collects_count <= 0)
+		(*game)->map->collects = col_map((*game)->map->collects, free, x, y);
+	if (c == 'E' && count_col((*game)->map->collects) == -1)
 		end_game(game);
 }
 
