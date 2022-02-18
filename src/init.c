@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 23:06:40 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/17 14:50:32 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/18 13:40:00 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	*ft_load_img(void **mlx, char *filename)
 t_assets	*init_assets(void **mlx)
 {
 	t_assets	*assets;
+	int			i;
 
 	assets = (t_assets *)malloc(sizeof(*assets) * 5);
 	if (!assets)
@@ -37,6 +38,10 @@ t_assets	*init_assets(void **mlx)
 	assets[3].key = 'E';
 	assets[4].img = ft_load_img(mlx, "img/collec.xpm");
 	assets[4].key = 'C';
+	i = -1;
+	while (++i <= 4)
+		if (!assets[i].img)
+			return (ft_error(CRED"Error: init_assets()\n"CNO));
 	return (assets);
 }
 
