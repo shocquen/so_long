@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 23:06:40 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/18 13:40:00 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/18 15:27:33 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ t_map	*init_map(char *path)
 	int		fd;
 
 	if (!check_map_name(path))
-		return (ft_error("Error: map path\n"));
+		return (ft_error(CRED"Error: map path\n"CNO));
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
-		return (ft_error("Error: malloc map\n"));
+		return (ft_error(CRED"Error: malloc map\n"CNO));
 	map->collects = NULL;
 	map->collect_count = 0;
 	map->map = NULL;
 	fd = open(path, O_RDONLY);
 	if (!fd)
-		return (ft_error("Error: map ain't open\n"));
+		return (ft_error(CRED"Error: map ain't open\n"CNO));
 	read_map(&map->map, fd);
 	if (!check_map_size(map->map))
 		return (ft_error(CRED"Error: map can't be parsed\n"CNO));
