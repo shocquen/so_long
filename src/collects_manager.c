@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:40:29 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/17 16:05:26 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:27:18 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static t_collect	*del_collect(t_collect *old, int x, int y)
 		new->pos.y = old->pos.y;
 		new->state = old->state;
 	}
+	free (old);
 	return (new);
 }
 

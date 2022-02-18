@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:44:25 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/17 16:10:03 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/18 18:02:27 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,17 @@ t_game	*init_game(char	*path)
 	return (game);
 }
 
+static int check_exit(t_list *map)
+{
+	while (map)
+	{
+		if (ft_strchr((const char *)map->content, 'E'))
+			return (1);
+		map = map->next;
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	*game;
@@ -49,9 +60,15 @@ int	main(int argc, char **argv)
 	game = init_game(argv[1]);
 	if (!game)
 		exit (1);
-	mlx_key_hook(game->window, key_hook, &game);
-	mlx_hook(game->window, 17, 1, &end_game, &game);
-	mlx_loop(game->mlx);
+	if (game->player->state && game->map->collect_count &&
+		check_exit(game->map->map))
+	{
+		mlx_key_hook(game->window, key_hook, &game);
+		mlx_hook(game->window, 17, 1, &end_game, &game);
+		mlx_loop(game->mlx);
+	}
+	else
+		ft_error(CRED"Error: seems like the map isn't perfect\n"CNO);
 	free_game(&game);
 }
 

@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:32:40 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/18 15:23:35 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/18 18:30:38 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	free_game(t_game **game)
 	if ((*game)->window)
 		mlx_destroy_window((*game)->mlx, (*game)->window);
 	mlx_destroy_display((*game)->mlx);
+	free((*game)->mlx);
 	free(*game);
 	return (0);
 }
