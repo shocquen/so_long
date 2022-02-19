@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 23:06:40 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/18 15:27:33 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/19 14:41:46 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_assets	*init_assets(void **mlx)
 
 	assets = (t_assets *)malloc(sizeof(*assets) * 5);
 	if (!assets)
-		return (ft_error(CRED"Error: init_assets()\n"CNO));
+		return (ft_error(CRED"Error: init_assets(): malloc\n"CNO));
 	assets[0].img = ft_load_img(mlx, "img/player.xpm");
 	assets[0].key = 'P';
 	assets[1].img = ft_load_img(mlx, "img/wall.xpm");
@@ -41,7 +41,10 @@ t_assets	*init_assets(void **mlx)
 	i = -1;
 	while (++i <= 4)
 		if (!assets[i].img)
-			return (ft_error(CRED"Error: init_assets()\n"CNO));
+		{
+			free(assets);
+			return (ft_error(CRED"Error: init_assets(): load img\n"CNO));
+		}
 	return (assets);
 }
 
@@ -61,8 +64,6 @@ t_map	*init_map(char *path)
 	t_map	*map;
 	int		fd;
 
-	if (!check_map_name(path))
-		return (ft_error(CRED"Error: map path\n"CNO));
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		return (ft_error(CRED"Error: malloc map\n"CNO));

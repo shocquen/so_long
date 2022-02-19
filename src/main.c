@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:44:25 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/18 18:02:27 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/19 14:41:54 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,16 @@ t_game	*init_game(char	*path)
 		return (ft_error(CRED"Error: mlx_init()\n"CNO));
 	game->assets = init_assets(&(game->mlx));
 	if (!game->assets)
-		return (ft_error(CRED"Error: init_game(): assets\n"CNO));
-	game->player = init_player();
-	game->map = init_map(path);
-	if (!game->map || !game->player)
 	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
 		free(game);
 		return (ft_error(CRED"Error: init_game()\n"CNO));
 	}
+	game->player = init_player();
+	game->map = init_map(path);
+	if (!game->map || !game->player)
+		return (ft_error(CRED"Error: init_game()\n"CNO));
 	init_window(&game);
 	if (!game->window)
 		return (ft_error(CRED"Error: mlx_new_window()\n"CNO));
@@ -57,9 +59,16 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (1);
+	if (!check_map_name(argv[1]))
+	{
+		ft_error(CRED"Error: map path\n"CNO);
+		return (1);
+	}
 	game = init_game(argv[1]);
 	if (!game)
-		exit (1);
+	{
+		return (1);
+	}
 	if (game->player->state && game->map->collect_count &&
 		check_exit(game->map->map))
 	{
@@ -71,5 +80,3 @@ int	main(int argc, char **argv)
 		ft_error(CRED"Error: seems like the map isn't perfect\n"CNO);
 	free_game(&game);
 }
-
-// TODO: sigsergv on bad img path

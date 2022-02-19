@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:32:40 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/18 18:30:38 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/19 14:24:22 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	free_game(t_game **game)
 
 	i = -1;
 	while (++i < 5)
-		mlx_destroy_image((*game)->mlx, (*game)->assets[i].img);
+		if ((*game)->assets[i].img && (*game)->mlx)
+			mlx_destroy_image((*game)->mlx, (*game)->assets[i].img);
 	free((*game)->assets);
 	free((*game)->player);
 	ft_lstclear(&(*game)->map->map, free);
