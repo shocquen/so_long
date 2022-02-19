@@ -6,11 +6,19 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:44:25 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/19 14:41:54 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/19 15:03:40 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	*error_assets(t_game **game)
+{
+	mlx_destroy_display((*game)->mlx);
+	free((*game)->mlx);
+	free((*game));
+	return (ft_error(CRED"Error: init_game()\n"CNO));
+}
 
 t_game	*init_game(char	*path)
 {
@@ -24,12 +32,7 @@ t_game	*init_game(char	*path)
 		return (ft_error(CRED"Error: mlx_init()\n"CNO));
 	game->assets = init_assets(&(game->mlx));
 	if (!game->assets)
-	{
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-		free(game);
-		return (ft_error(CRED"Error: init_game()\n"CNO));
-	}
+		return (error_assets(&game));
 	game->player = init_player();
 	game->map = init_map(path);
 	if (!game->map || !game->player)
@@ -42,7 +45,7 @@ t_game	*init_game(char	*path)
 	return (game);
 }
 
-static int check_exit(t_list *map)
+static int	check_exit(t_list *map)
 {
 	while (map)
 	{
@@ -69,8 +72,8 @@ int	main(int argc, char **argv)
 	{
 		return (1);
 	}
-	if (game->player->state && game->map->collect_count &&
-		check_exit(game->map->map))
+	if (game->player->state && game->map->collect_count
+		&& check_exit(game->map->map))
 	{
 		mlx_key_hook(game->window, key_hook, &game);
 		mlx_hook(game->window, 17, 1, &end_game, &game);
