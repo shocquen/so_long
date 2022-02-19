@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:44:31 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/18 19:27:44 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/19 10:25:10 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,6 @@ void			read_map(t_list **map, int fd);
 /* collect_manager */
 int				count_col(t_list *lst);
 t_list			*col_map(t_list *lst, void (*del)(void *), int x, int y);
+void	collect_map(t_list **lst, void (*del)(void *), int x, int y);
 
 #endif
