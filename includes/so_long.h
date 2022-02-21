@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:44:31 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/19 14:50:10 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/21 11:15:12 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@
 # define EMPTY 2
 # define EXIT 3
 # define COLLECT 4
+
+/* Assets path */
+# define PLAYER_PATH "img/player.xpm"
+# define WALL_PATH "img/wall.xpm"
+# define EMPTY_PATH "img/log.xpm"
+# define EXIT_PATH "img/exit.xpm"
+# define COLLECT_PATH "img/collec.xpm"
 
 /* map_check */
 # define EXTENSION ".ber"

@@ -6,7 +6,7 @@
 #    By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 09:28:22 by shocquen          #+#    #+#              #
-#    Updated: 2022/02/19 14:58:42 by shocquen         ###   ########.fr        #
+#    Updated: 2022/02/21 11:33:50 by shocquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,7 +107,7 @@ NAME		= so_long
 RM			= rm -rf
 CC			= gcc
 AR			= ar -rcs
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror
 MLXFLAGS	= -Ilibmlx -Llibmlx -llibmlx -framework OpenGL -framework AppKit
 
 ifeq ($(shell uname),Linux)
