@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:44:25 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/28 13:57:17 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:47:07 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_game	*init_game(char	*path)
 	game = (t_game *)malloc(sizeof(*game));
 	if (!game)
 		return (ft_error(CRED"Error: malloc t_game *game\n"CNO));
-	ft_bzero(game, )
+	ft_bzero(game, sizeof(*game));
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (ft_error(CRED"Error: mlx_init()\n"CNO));
@@ -90,5 +90,3 @@ int	main(int argc, char **argv)
 		ft_error(CRED"Error: seems like the map isn't perfect\n"CNO);
 	free_game(&game);
 }
-
-// TODO: Segfault on reading a dir

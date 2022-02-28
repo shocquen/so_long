@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 14:59:00 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/21 11:29:01 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:53:17 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	*error_assets(t_assets **assets, void **mlx, int top)
 	{
 		if ((*assets)[i].img)
 		{
-			ft_printf("test: %d/%d\n", i, top - 1);
+			ft_printf("asset try: %d/%d\n", i + 1, top);
 			mlx_destroy_image((*mlx), (*assets)[i].img);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 23:06:40 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/28 13:20:48 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:03:22 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ t_player	*init_player(void)
 	return (player);
 }
 
-static void	*error_map(const char *msg, void *ptr)
+static void	*error_map(const char *msg, t_map *map)
 {
-	free(ptr);
+	if (map->map)
+		ft_lstclear(&map->map, free);
+	free(map);
 	return (ft_error(msg));
 }
 
