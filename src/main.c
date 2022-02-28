@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:44:25 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/19 15:03:40 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/28 13:57:17 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ static void	*error_assets(t_game **game)
 	return (ft_error(CRED"Error: init_game()\n"CNO));
 }
 
+static void *error_apply(t_game **game)
+{
+	free_game(game);
+	return (ft_error(CRED"Error: init_game()\n"CNO));
+}
+
 t_game	*init_game(char	*path)
 {
 	t_game	*game;
@@ -27,6 +33,7 @@ t_game	*init_game(char	*path)
 	game = (t_game *)malloc(sizeof(*game));
 	if (!game)
 		return (ft_error(CRED"Error: malloc t_game *game\n"CNO));
+	ft_bzero(game, )
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (ft_error(CRED"Error: mlx_init()\n"CNO));
@@ -36,12 +43,12 @@ t_game	*init_game(char	*path)
 	game->player = init_player();
 	game->map = init_map(path);
 	if (!game->map || !game->player)
-		return (ft_error(CRED"Error: init_game()\n"CNO));
+		return (error_apply(&game));
 	init_window(&game);
 	if (!game->window)
 		return (ft_error(CRED"Error: mlx_new_window()\n"CNO));
 	if (!apply_map(game))
-		return (ft_error(CRED"Error: init_game()\n"CNO));
+		return (error_apply(&game));
 	return (game);
 }
 
@@ -83,3 +90,5 @@ int	main(int argc, char **argv)
 		ft_error(CRED"Error: seems like the map isn't perfect\n"CNO);
 	free_game(&game);
 }
+
+// TODO: Segfault on reading a dir

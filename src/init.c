@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 23:06:40 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/19 14:58:48 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/28 13:20:48 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ t_player	*init_player(void)
 		return (NULL);
 	ft_memset(player, 0, sizeof(*player));
 	return (player);
+}
+
+static void	*error_map(const char *msg, void *ptr)
+{
+	free(ptr);
+	return (ft_error(msg));
 }
 
 t_map	*init_map(char *path)
@@ -38,8 +44,8 @@ t_map	*init_map(char *path)
 	if (!fd)
 		return (ft_error(CRED"Error: map ain't open\n"CNO));
 	read_map(&map->map, fd);
-	if (!check_map_size(map->map))
-		return (ft_error(CRED"Error: map can't be parsed\n"CNO));
+	if (!check_map_size(map->map) || !map->map)
+		return (error_map(CRED"Error: map can't be parsed\n"CNO, map));
 	map->height = ft_lstsize(map->map);
 	map->width = ft_strlen(map->map->content);
 	return (map);
