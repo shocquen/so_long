@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:44:25 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/28 14:47:07 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:20:43 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	*error_assets(t_game **game)
 	return (ft_error(CRED"Error: init_game()\n"CNO));
 }
 
-static void *error_apply(t_game **game)
+static void	*error_apply(t_game **game)
 {
 	free_game(game);
 	return (ft_error(CRED"Error: init_game()\n"CNO));
