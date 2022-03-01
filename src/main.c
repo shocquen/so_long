@@ -6,7 +6,7 @@
 /*   By: shocquen <shocquen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:44:25 by shocquen          #+#    #+#             */
-/*   Updated: 2022/02/28 15:20:43 by shocquen         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:29:54 by shocquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ t_game	*init_game(char	*path)
 {
 	t_game	*game;
 
-	game = (t_game *)malloc(sizeof(*game));
+	game = (t_game *)ft_calloc(sizeof(*game), sizeof(*game));
 	if (!game)
 		return (ft_error(CRED"Error: malloc t_game *game\n"CNO));
-	ft_bzero(game, sizeof(*game));
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (ft_error(CRED"Error: mlx_init()\n"CNO));
